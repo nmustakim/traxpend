@@ -43,3 +43,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+# Environment files - NEVER commit these!
+
+*.env
+*.env.*
+env.*
+google-services.json
+GoogleService-Info.plist
+firebase-config.json
