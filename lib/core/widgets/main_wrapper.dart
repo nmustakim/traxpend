@@ -24,6 +24,44 @@ class _MainWrapperState extends State<MainWrapper>
       vsync: this,
     );
     _fabController.forward();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _updateSelectedIndex();
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _updateSelectedIndex();
+  }
+
+  void _updateSelectedIndex() {
+    final location = GoRouterState.of(context).uri.path;
+
+    int? newIndex;
+    switch (location) {
+      case '/home':
+        newIndex = 0;
+        break;
+      case '/statistics':
+        newIndex = 1;
+        break;
+      case '/profile':
+        newIndex = 2;
+        break;
+      case '/settings':
+        newIndex = 3;
+        break;
+      default:
+        return;
+    }
+
+    if (_selectedIndex != newIndex) {
+      setState(() {
+        _selectedIndex = newIndex!;
+      });
+    }
   }
 
   @override
@@ -33,6 +71,8 @@ class _MainWrapperState extends State<MainWrapper>
   }
 
   void _onItemTapped(int index) {
+    if (_selectedIndex == index) return;
+
     setState(() => _selectedIndex = index);
     switch (index) {
       case 0:
@@ -56,10 +96,7 @@ class _MainWrapperState extends State<MainWrapper>
         MediaQuery.of(context).orientation == Orientation.portrait;
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(bottom: 70), // Space for FAB
-        child: widget.child,
-      ),
+      body: widget.child,
       floatingActionButton: Padding(
         padding: EdgeInsets.only(bottom: isPortrait ? 16 : 24),
         child: ScaleTransition(
@@ -67,24 +104,25 @@ class _MainWrapperState extends State<MainWrapper>
             CurvedAnimation(parent: _fabController, curve: Curves.elasticOut),
           ),
           child: FloatingActionButton(
-            onPressed: () => context.go('/add'),
-              shape: const CircleBorder(),
+            onPressed: () {
+              // Use push instead of go to maintain navigation stack
+              context.push('/add');
+            },
+            shape: const CircleBorder(),
             backgroundColor: Theme.of(context).colorScheme.primary,
             foregroundColor: Colors.white,
             tooltip: 'Add Expense',
-              child: const Icon(Icons.add, size: 28),
+            child: const Icon(Icons.add, size: 28),
           ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        height: isPortrait?null:90,
+        height: isPortrait ? null : 90,
         shape: const CircularNotchedRectangle(),
         notchMargin: 8,
         child: Padding(
-          padding: EdgeInsets.only(
-         top: 8
-          ),
+          padding: const EdgeInsets.only(top: 8),
           child: Row(
             children: [
               // Left Side
@@ -94,7 +132,7 @@ class _MainWrapperState extends State<MainWrapper>
                   children: [
                     _buildNavItem(0, Icons.home, 'Home', isPortrait),
                     _buildNavItem(1, Icons.bar_chart, 'Stats', isPortrait),
-                    SizedBox(width: 12,),
+                    const SizedBox(width: 12),
                   ],
                 ),
               ),
@@ -104,7 +142,7 @@ class _MainWrapperState extends State<MainWrapper>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SizedBox(width: 12,),
+                    const SizedBox(width: 12),
                     _buildNavItem(2, Icons.person, 'Profile', isPortrait),
                     _buildNavItem(3, Icons.settings, 'Settings', isPortrait),
                   ],
@@ -121,45 +159,49 @@ class _MainWrapperState extends State<MainWrapper>
     final isSelected = _selectedIndex == index;
     return GestureDetector(
       onTap: () => _onItemTapped(index),
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
         padding: EdgeInsets.symmetric(
           vertical: showLabel ? 12 : 8,
           horizontal: 16,
         ),
         decoration: BoxDecoration(
-          color:
-              isSelected
-                  ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
-                  : null,
+          color: isSelected
+              ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
+              : null,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              icon,
-              color:
-                  isSelected
-                      ? Theme.of(context).colorScheme.primary
-                      : Colors.grey,
-              size: showLabel ? 20 : 30,
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              child: Icon(
+                icon,
+                color: isSelected
+                    ? Theme.of(context).colorScheme.primary
+                    : Colors.grey,
+                size: showLabel ? 20 : 30,
+              ),
             ),
             if (showLabel) ...[
               const SizedBox(height: 2),
               Flexible(
-                child: Text(
-                  label,
+                child: AnimatedDefaultTextStyle(
+                  duration: const Duration(milliseconds: 200),
                   style: TextStyle(
-                    color:
-                        isSelected
-                            ? Theme.of(context).colorScheme.primary
-                            : Colors.grey,
+                    color: isSelected
+                        ? Theme.of(context).colorScheme.primary
+                        : Colors.grey,
                     fontSize: 11,
                     fontWeight:
-                        isSelected ? FontWeight.bold : FontWeight.normal,
+                    isSelected ? FontWeight.bold : FontWeight.normal,
                   ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+                  child: Text(
+                    label,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
                 ),
               ),
             ],
