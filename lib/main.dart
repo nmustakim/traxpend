@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'core/theme/app_theme.dart';
 import 'core/router/app_router.dart';
 import 'core/di/injection_container.dart' as di;
+import 'core/theme/theme_bloc.dart';
 import 'features/auth/presentation/bloc/auth_bloc.dart';
 import 'features/expense/presentation/bloc/expense_bloc.dart';
 
@@ -23,14 +24,19 @@ class Traxpend extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => di.sl<AuthBloc>()),
         BlocProvider(create: (_) => di.sl<ExpenseBloc>()),
+        BlocProvider(create: (_) => di.sl<ThemeBloc>()), // Add ThemeBloc
       ],
-      child: MaterialApp.router(
-        title: 'Traxpend',
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.system,
-        routerConfig: AppRouter.router,
-        debugShowCheckedModeBanner: false,
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            title: 'Traxpend',
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: state.themeMode,
+            routerConfig: AppRouter.router,
+            debugShowCheckedModeBanner: false,
+          );
+        },
       ),
     );
   }

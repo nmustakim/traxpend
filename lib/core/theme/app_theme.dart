@@ -77,4 +77,15 @@ class AppTheme {
       ),
     );
   }
+
+
+  static ThemeData getThemeData(ThemeMode themeMode) {
+    switch (themeMode) {
+      case ThemeMode.dark:
+        return darkTheme;
+      case ThemeMode.light:
+      default:
+        return lightTheme;
+    }
+  }
 }

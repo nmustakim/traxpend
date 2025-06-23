@@ -66,12 +66,6 @@ class ProfilePage extends StatelessWidget {
                       width: double.infinity,
                       child: ElevatedButton.icon(
                         onPressed: () async {
-                          // Show loading indicator
-                          final scaffold = ScaffoldMessenger.of(context);
-                          scaffold.showSnackBar(
-                            const SnackBar(content: Text('Signing out...')),
-                          );
-
                           context.read<AuthBloc>().add(AuthSignOutRequested());
                           await Future.delayed(
                             const Duration(milliseconds: 300),
