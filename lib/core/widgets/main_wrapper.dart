@@ -142,7 +142,7 @@ class _MainWrapperState extends State<MainWrapper>
                   isSelected
                       ? Theme.of(context).colorScheme.primary
                       : Colors.grey,
-              size: showLabel ? 20 : 24,
+              size: showLabel ? 20 : 30,
             ),
             if (showLabel) ...[
               const SizedBox(height: 2),
