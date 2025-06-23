@@ -279,7 +279,6 @@ class _AddExpensePageState extends State<AddExpensePage> {
           ),
         );
 
-        // Go back to the previous page instead of always going to home
         context.pop();
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
