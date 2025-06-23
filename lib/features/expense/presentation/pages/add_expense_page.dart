@@ -268,7 +268,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
               children: [
                 const Icon(Icons.check_circle, color: Colors.white),
                 const SizedBox(width: 8),
-                Text('Expense "${expense.title}" added successfully!',overflow: TextOverflow.ellipsis,),
+                Expanded(child: Text('Expense "${expense.title}" added successfully!',overflow: TextOverflow.ellipsis,)),
               ],
             ),
             backgroundColor: Colors.green,
