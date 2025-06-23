@@ -241,7 +241,6 @@ class _AddExpensePageState extends State<AddExpensePage> {
   }
 
   void _handleBack() {
-    // Go back to the previous page instead of always going to home
     context.pop();
   }
 
@@ -263,14 +262,13 @@ class _AddExpensePageState extends State<AddExpensePage> {
 
         context.read<ExpenseBloc>().add(AddExpense(expense));
 
-        // Show success message
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Row(
               children: [
                 const Icon(Icons.check_circle, color: Colors.white),
                 const SizedBox(width: 8),
-                Text('Expense "${expense.title}" added successfully!'),
+                Text('Expense "${expense.title}" added successfully!',overflow: TextOverflow.ellipsis,),
               ],
             ),
             backgroundColor: Colors.green,
