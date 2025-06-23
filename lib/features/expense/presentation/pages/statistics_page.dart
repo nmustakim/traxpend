@@ -87,7 +87,7 @@ class StatisticsPage extends StatelessWidget {
                                 showTitles: true,
                                 reservedSize: 40,
                                 getTitlesWidget: (value, meta) {
-                                  return Text('\${value.toInt()}');
+                                  return Text('\$${value.toInt()}');
                                 },
                               ),
                             ),
@@ -154,7 +154,7 @@ class StatisticsPage extends StatelessWidget {
     final Map<int, double> monthlyTotals = {};
 
     for (final expense in expenses) {
-      final month = expense.date.month - 1; // 0-indexed for chart
+      final month = expense.date.month - 1;
       monthlyTotals[month] = (monthlyTotals[month] ?? 0) + expense.amount;
     }
 
@@ -178,7 +178,7 @@ class StatisticsPage extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
-            Text('${entry.key}: \${entry.value.toStringAsFixed(0)}'),
+            Text('${entry.key}: \$${entry.value.toStringAsFixed(0)}'),
           ],
         );
       }).toList(),

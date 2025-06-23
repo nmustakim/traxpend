@@ -70,7 +70,7 @@ class SummaryCard extends StatelessWidget {
                   _buildStat('Expenses', expenseCount.toString(), Icons.receipt),
                   const SizedBox(width: 32),
                   _buildStat('Avg/Day',
-                      totalAmount > 0 ? '\${(totalAmount / 30).toStringAsFixed(0)}' : '\$0',
+                      totalAmount > 0 ? '\$${(totalAmount / 30).toStringAsFixed(0)}' : '\$0',
                       Icons.calendar_today),
                 ],
               ),

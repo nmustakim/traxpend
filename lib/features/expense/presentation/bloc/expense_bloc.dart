@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 import '../../domain/entities/expense.dart';
 import '../../domain/repositories/expense_repository.dart';
 
-
 part 'expense_state.dart';
 part 'expense_event.dart';
 
@@ -17,39 +16,70 @@ class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
     on<DeleteExpense>(_onDeleteExpense);
   }
 
-  void _onLoadExpenses(LoadExpenses event, Emitter<ExpenseState> emit) {
+  Future<void> _onLoadExpenses(LoadExpenses event, Emitter<ExpenseState> emit) async {
     emit(ExpenseLoading());
+
     try {
-      _expenseRepository.getExpenses(event.userId).listen(
-            (expenses) => emit(ExpenseLoaded(expenses)),
-        onError: (error) => emit(ExpenseError(error.toString())),
-      );
+
+      final expenses = await _expenseRepository.getExpenses(event.userId).first;
+
+      if (!emit.isDone) {
+        emit(ExpenseLoaded(expenses));
+      }
     } catch (e) {
-      emit(ExpenseError(e.toString()));
+      print(e.toString());
+      if (!emit.isDone) {
+
+        emit(ExpenseError(e.toString()));
+      }
     }
   }
 
   Future<void> _onAddExpense(AddExpense event, Emitter<ExpenseState> emit) async {
     try {
       await _expenseRepository.addExpense(event.expense);
+
+
+      final currentState = state;
+      if (currentState is ExpenseLoaded) {
+
+        add(LoadExpenses(event.expense.userId));
+      }
     } catch (e) {
-      emit(ExpenseError(e.toString()));
+      if (!emit.isDone) {
+        emit(ExpenseError(e.toString()));
+      }
     }
   }
 
   Future<void> _onUpdateExpense(UpdateExpense event, Emitter<ExpenseState> emit) async {
     try {
       await _expenseRepository.updateExpense(event.expense);
+
+      final currentState = state;
+      if (currentState is ExpenseLoaded) {
+        add(LoadExpenses(event.expense.userId));
+      }
     } catch (e) {
-      emit(ExpenseError(e.toString()));
+      if (!emit.isDone) {
+        emit(ExpenseError(e.toString()));
+      }
     }
   }
 
   Future<void> _onDeleteExpense(DeleteExpense event, Emitter<ExpenseState> emit) async {
     try {
       await _expenseRepository.deleteExpense(event.id);
+
+      // Reload expenses after deleting
+      final currentState = state;
+      if (currentState is ExpenseLoaded) {
+  // add(LoadExpenses(event.userId));
+      }
     } catch (e) {
-      emit(ExpenseError(e.toString()));
+      if (!emit.isDone) {
+        emit(ExpenseError(e.toString()));
+      }
     }
   }
 }

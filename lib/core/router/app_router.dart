@@ -1,5 +1,6 @@
 
 import 'package:go_router/go_router.dart';
+import 'package:traxpend/features/settings/presentation/pages/settings_page.dart';
 import '../../features/auth/presentation/pages/auth_page.dart';
 import '../../features/expense/presentation/pages/home_page.dart';
 import '../../features/expense/presentation/pages/add_expense_page.dart';
@@ -34,6 +35,8 @@ class AppRouter {
             path: '/profile',
             builder: (context, state) => const ProfilePage(),
           ),
+          GoRoute(path: '/settings',
+          builder: (context,state)=>const SettingsScreen())
         ],
       ),
     ],
