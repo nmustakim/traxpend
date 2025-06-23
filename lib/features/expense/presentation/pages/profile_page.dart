@@ -11,9 +11,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-      ),
+      appBar: AppBar(title: const Text('Profile')),
       body: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
           if (state is AuthAuthenticated) {
@@ -67,9 +65,21 @@ class ProfilePage extends StatelessWidget {
                     child: SizedBox(
                       width: double.infinity,
                       child: ElevatedButton.icon(
-                        onPressed: () {
+                        onPressed: () async {
+                          // Show loading indicator
+                          final scaffold = ScaffoldMessenger.of(context);
+                          scaffold.showSnackBar(
+                            const SnackBar(content: Text('Signing out...')),
+                          );
+
                           context.read<AuthBloc>().add(AuthSignOutRequested());
-                          context.go('/auth');
+                          await Future.delayed(
+                            const Duration(milliseconds: 300),
+                          );
+
+                          if (context.mounted) {
+                            context.go('/auth');
+                          }
                         },
                         icon: const Icon(Icons.logout),
                         label: const Text('Sign Out'),

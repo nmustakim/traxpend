@@ -65,10 +65,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> _onSignOutRequested(AuthSignOutRequested event, Emitter<AuthState> emit) async {
-    await _authRepository.signOut();
-    emit(AuthUnauthenticated());
-  }
+    emit(AuthLoading());
+    try {
+      await _authRepository.signOut();
+      emit(AuthUnauthenticated());
+    } catch (e) {
+      emit(AuthError(e.toString()));
 
+    }
+  }
   @override
   Future<void> close() {
     _authStateSubscription?.cancel();

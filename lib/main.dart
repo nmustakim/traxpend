@@ -25,7 +25,7 @@ class Traxpend extends StatelessWidget {
         BlocProvider(create: (_) => di.sl<ExpenseBloc>()),
       ],
       child: MaterialApp.router(
-        title: 'TraXpend',
+        title: 'Traxpend',
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: ThemeMode.system,

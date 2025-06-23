@@ -167,7 +167,7 @@ class _MainWrapperState extends State<MainWrapper>
         ),
         decoration: BoxDecoration(
           color: isSelected
-              ? Theme.of(context).colorScheme.primary.withOpacity(0.1)
+              ? Theme.of(context).colorScheme.primary.withAlpha(20)
               : null,
           borderRadius: BorderRadius.circular(12),
         ),
