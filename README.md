@@ -1,20 +1,15 @@
+# Traxpend 💰
+**Track your expenses with ease**  
+A modern, intuitive expense tracking mobile application built with Flutter that helps you manage your finances with ease.
 
-Traxpend 💰 A modern, intuitive expense tracking mobile application built with Flutter that helps you manage your finances with ease.
+---
 
+## 📱 App Screenshots
 
-## 📱 Screenshots
-
-### 🏠 Home Screen
-![Home](screenshots/1.png)
-
-### ➕ Add Expense
-![Add Expense](screenshots/2.png)
-
-### 📊 Summary View
-![Summary](screenshots/3.png)
-
-### 📊 Summary View
-![Summary](screenshots/4.png)
-
-### 📊 Summary View
-![Summary](screenshots/5.png)
+<div align="center">
+  <img src="https://github.com/nmustakim/traxpend/blob/main/1.png?raw=true" width="180"/>
+  <img src="https://github.com/nmustakim/traxpend/blob/main/2.png?raw=true" width="180"/>
+  <img src="https://github.com/nmustakim/traxpend/blob/main/3.png?raw=true" width="180"/>
+  <img src="https://github.com/nmustakim/traxpend/blob/main/4.png?raw=true" width="180"/>
+  <img src="https://github.com/nmustakim/traxpend/blob/main/5.png?raw=true" width="180"/>
+</div>
