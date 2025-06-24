@@ -1,6 +1,7 @@
 # traxpend
 
-A new Flutter project.
+![1](https://github.com/user-attachments/assets/9977dac6-1602-42f0-967c-4bcd66ef9e68)
+
 
 ## Getting Started
 
