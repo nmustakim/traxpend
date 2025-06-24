@@ -1,16 +1,20 @@
-# traxpend
 
-A new Flutter project.
+Traxpend 💰 A modern, intuitive expense tracking mobile application built with Flutter that helps you manage your finances with ease.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## 📱 Screenshots
 
-A few resources to get you started if this is your first Flutter project:
+### 🏠 Home Screen
+![Home](screenshots/1.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### ➕ Add Expense
+![Add Expense](screenshots/2.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 📊 Summary View
+![Summary](screenshots/3.png)
+
+### 📊 Summary View
+![Summary](screenshots/4.png)
+
+### 📊 Summary View
+![Summary](screenshots/5.png)
