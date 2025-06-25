@@ -24,7 +24,7 @@ class Traxpend extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => di.sl<AuthBloc>()),
         BlocProvider(create: (_) => di.sl<ExpenseBloc>()),
-        BlocProvider(create: (_) => di.sl<ThemeBloc>()), // Add ThemeBloc
+        BlocProvider(create: (_) => di.sl<ThemeBloc>()),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
