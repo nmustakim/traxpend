@@ -1,29 +1,30 @@
 # Traxpend 💰
 **Track your expenses with ease**  
-A modern, intuitive expense tracking mobile application built with Flutter that helps you manage your finances with ease.
+A modern, intuitive expense tracking mobile application built with Flutter that helps you manage your finances efficiently — both online and offline.
 
 ---
 
 ## ✨ Features
 
-- ✅ **Add & Manage Expenses** – Track daily spending with ease
-- ✅ **Firebase Backend** – Real-time sync across devices
-- ✅ **Monthly Insights** – Visualize spending patterns
-- ✅ **Dark/Light Mode** – Eye-friendly themes
-- ✅ **Localization** – Supports multiple languages
-- ✅ **Bloc State Management** – Clean and scalable architecture
+- ✅ **Add & Manage Expenses** – Track daily spending effortlessly
+- ✅ **Firebase Backend** – Real-time sync across devices using Firestore & Auth
+- ✅ **Monthly Insights** – Visualize spending trends via charts
+- ✅ **Dark/Light Mode** – Eye-friendly theming support
+- ✅ **Offline Support** – Works without internet using shared preferences
+- ✅ **Bloc State Management** – Clean and maintainable architecture
 
 ---
 
 ## 🛠️ Tech Stack
 
 - **Frontend**: Flutter
+- **Routing**: GoRouter
 - **State Management**: Flutter Bloc
-- **Backend**: Firebase (Auth, Firestore, Storage)
-- **Localization**: EasyLocalization
+- **Backend**: Firebase Auth & Firestore
 - **Dependency Injection**: GetIt
-- **Database**: Hive (Offline caching)
-- **UI**: Cupertino & Material Design
+- **Charts**: FL Chart
+- **Local Storage**: Shared Preferences
+- **UI Toolkit**: Material & Cupertino
 
 ---
 
