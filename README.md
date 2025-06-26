@@ -23,33 +23,44 @@ UI: Cupertino & Material Design
 Project Structure (Clean Architecture) 🏗️
 
 traxpend/
-├── android/               
-├── ios/                   
-├── lib/                   
-│   ├── core/              
-│   │   ├── config/        
-│   │   ├── di/            
-│   │   ├── router/        
-│   │   ├── theme/         
-│   │   └── widgets/       
+├── android/                # Android platform-specific files
+├── ios/                    # iOS platform-specific files
+├── lib/                    # Core application code
+│   ├── core/               # Shared app infrastructure
+│   │   ├── config/         # App configuration (constants, env)
+│   │   ├── di/             # Dependency injection (GetIt setup)
+│   │   ├── router/         # Navigation/routes (GoRouter, etc.)
+│   │   ├── theme/          # App themes (light/dark mode)
+│   │   └── widgets/        # Reusable shared widgets
 │   │
-│   ├── features/          
-│   │   ├── auth/          
-│   │   │   ├── data/      
-│   │   │   ├── domain/    
-│   │   │   └── presentation
+│   ├── features/           # Feature modules (Clean Architecture)
+│   │   ├── auth/           # Authentication flow
+│   │   │   ├── data/       # Auth data layer (repositories, datasources)
+│   │   │   ├── domain/     # Auth domain layer (entities, use cases)
+│   │   │   └── presentation/ # Auth UI & BLoCs
 │   │   │
-│   │   ├── expense/       
-│   │   │   ├── data/      
-│   │   │   ├── domain/    
-│   │   │   └── presentation
+│   │   ├── expense/        # Expense tracking feature
+│   │   │   ├── data/       # Expense data layer (Firebase/Hive)
+│   │   │   ├── domain/     # Business logic (entities, use cases)
+│   │   │   └── presentation/ # UI & BLoCs
 │   │   │
-│   │   └── settings/      
+│   │   └── settings/       # User settings feature
 │   │
-│   └── main.dart          
+│   └── main.dart           # App entry point
 │
-├── assets/                
-│   ├── images/            
+├── assets/                 # Static files (images, fonts, etc.)
+│   ├── images/             # App images (PNGs, SVGs)
+│   └── translations/       # Localization files (JSON/arb)
+│
+├── test/                   # Unit/widget tests
+├── web/                    # Web-specific files
+├── linux/                  # Linux platform files
+├── macos/                  # macOS platform files
+├── windows/                # Windows platform files
+│
+├── .gitignore              # Git exclusion rules
+├── pubspec.yaml            # Dependencies & metadata
+└── analysis_options.yaml   # Linting/static analysis config         
 
 
 
