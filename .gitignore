@@ -50,4 +50,5 @@ app.*.map.json
 env.*
 google-services.json
 GoogleService-Info.plist
+firebase.json
 firebase-config.json
