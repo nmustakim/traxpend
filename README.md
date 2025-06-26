@@ -2,7 +2,56 @@
 **Track your expenses with ease**  
 A modern, intuitive expense tracking mobile application built with Flutter that helps you manage your finances with ease.
 
----
+Features ✨
+
+✅ Add & Manage Expenses – Track daily spending with ease
+✅ Firebase Backend – Real-time sync across devices
+✅ Monthly Insights – Visualize spending patterns
+✅ Dark/Light Mode – Eye-friendly themes
+✅ Localization – Supports multiple languages
+✅ Bloc State Management – Clean and scalable architecture
+
+Tech Stack 🛠️
+
+Frontend: Flutter
+State Management: Flutter Bloc
+Backend: Firebase (Auth, Firestore, Storage)
+Localization: EasyLocalization
+Dependency Injection: GetIt
+Database: Hive (Offline caching)
+UI: Cupertino & Material Design
+Project Structure (Clean Architecture) 🏗️
+
+traxpend/
+├── android/               
+├── ios/                   
+├── lib/                   
+│   ├── core/              
+│   │   ├── config/        
+│   │   ├── di/            
+│   │   ├── router/        
+│   │   ├── theme/         
+│   │   └── widgets/       
+│   │
+│   ├── features/          
+│   │   ├── auth/          
+│   │   │   ├── data/      
+│   │   │   ├── domain/    
+│   │   │   └── presentation
+│   │   │
+│   │   ├── expense/       
+│   │   │   ├── data/      
+│   │   │   ├── domain/    
+│   │   │   └── presentation
+│   │   │
+│   │   └── settings/      
+│   │
+│   └── main.dart          
+│
+├── assets/                
+│   ├── images/            
+
+
 
 ## 📱 App Screenshots
 
